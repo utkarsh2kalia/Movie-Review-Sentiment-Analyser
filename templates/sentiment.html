@@ -1,0 +1,24 @@
+
+{% extends "layout.html" %}
+
+    {% block title %}Sentiment Analysis of "{{mylist['review1']["movie_name"]}}"{% endblock %}
+<h1>Sentiment Analysis of <strong>"{{mylist['review1']["movie_name"]}}"</strong></h1>
+
+    
+
+
+{% block main %}
+
+    {% for i in range(0,mylist|length)  %}
+    <div class="container">
+  <p><h3>Review {{i+1}}:</h3>  {{ mylist["review"+(i+1)|string]["content"][0] }}</p>
+   <p>Sentiment Analysis using </p>
+   <b>Gaussian Naive Bayes classifier:</b> <span id = "myspan" style='color: {% if mylist["review"+(i+1)|string]["sentiment"][0]=="Positive" %}green{%else%}red{%endif%};'><strong>{{ mylist["review"+(i+1)|string]["sentiment"][0] }}</strong></span>
+   <br>
+   <b>Multinomial Naive Bayes classifier:</b> <span id = "myspan" style='color: {% if mylist["review"+(i+1)|string]["sentiment"][1]=="Positive" %}green{%else%}red{%endif%};'><strong>{{ mylist["review"+(i+1)|string]["sentiment"][1] }}</strong></span>
+    <br>
+    <b>Bernoulli Naive Bayes classifier:</b> <span id = "myspan" style='color: {% if mylist["review"+(i+1)|string]["sentiment"][2]=="Positive" %}green{%else%}red{%endif%};' ><strong>{{ mylist["review"+(i+1)|string]["sentiment"][2] }}</strong></span>
+</div>
+{% endfor %}
+    
+{% endblock %}
